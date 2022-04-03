@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\role;
 
 class RegisterController extends Controller
 {
@@ -15,7 +16,18 @@ class RegisterController extends Controller
     public function index()
     {
         return view('signup.signup',[
-            'title' => 'Signup'
+            'title' => 'Sqeel.io | Signup'
+        ]);
+    }
+
+    public function signupview(Request $request)
+    {
+        $role = role::find($request['role_id']);
+       
+        return view('signup.form',[
+            'title' => $role->namaRole . ' | Signup',
+            'role_id' => $request['role_id'],
+            'namaRole' => $role->namaRole
         ]);
     }
 
@@ -45,7 +57,7 @@ class RegisterController extends Controller
             'password' => 'required|min:4'
         ]);
 
-        User::create($valida )
+       
     }
 
     /**

@@ -1,31 +1,34 @@
-@extends('Layout.loginLayout')
+@extends('Layout.signupLayout')
 
 @section('login')
-    <form action="/signup" method="POST">
+    <form action="/signup/form" method="POST">
         @csrf
         <h4>Sign Up</h4>
-        <p>Choose role</p>
-        <div class="mb-3 mt-4 row">
-            <div class="col">
-                <input type="text" class="form-control" id="email" name="email" placeholder="Email Adress"
-                    value="{{ old('email') }}">
-            </div>
-        </div>
-        <div class=" mb-4 row">
-            <div class="col">
-                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-            </div>
-        </div>
-        <div class="form-check mb-4 ">
-            <input class="form-check-input" type="checkbox" value="" id="remember" name="remember" checked>
-            <label class="form-check-label" for="flexCheckChecked">
-                Remember me
+        <p>Choose role :</p>
+        <div class="content">
+            <input type="radio" name="role_id" id="student" value="1">
+            <input type="radio" name="role_id" id="mentor" value="2">
+            <label for="student" class="box first">
+                <div class="course">
+                    <span class="circle"></span>
+                    <span class="subject">Student</span>
+                </div>
+                <span class="gbr"><img src="/images/student.png" alt=""></span>
+            </label>
+            <label for="mentor" class="box second">
+                <div class="course">
+                    <span class="circle"></span>
+                    <span class="subject">Mentor</span>
+                </div>
+                <span class="gbr"><img src="/images/teacher.png" alt=""></span>
             </label>
         </div>
+        
+    
         <div class="d-grid gap-2 col-12 mx-auto">
             <button type="submit" class="btn ">Get Started</button>
         </div>
-        <input type="text" hidden name="role_id" id="role_id" value="1">
-        <p class="text-center">Don't Have an account? <a href="">Create For Free</a></p>
+       
+        <p class="text-center">Already have an account?<a href="/login/student"> Sign in</a></p>
     </form>
 @endsection>

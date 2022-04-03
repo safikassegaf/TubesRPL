@@ -27,6 +27,6 @@
             <button type="submit" class="btn">Get Started</button>
         </div>
         {{-- <input type="text" hidden name="role_id" id="role_id" value="2"> --}}
-        <p class="text-center">Don't Have an account? <a href="">Create For Free</a></p>
+        <p class="text-center">Don't Have an account? <a href="/signup">Create For Free</a></p>
     </form>
 @endsection

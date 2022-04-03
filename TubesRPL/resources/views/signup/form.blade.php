@@ -3,7 +3,7 @@
 @section('login')
     <form action="/login" method="POST">
         @csrf
-        <h4>Mentor Log In</h4>
+        <h4>{{ $namaRole }} signup</h4>
         <a href="/login/student" class="">Sign in as Student </a>
         <div class="mb-3 mt-4 row">
             <div class="col">

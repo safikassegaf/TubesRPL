@@ -1,5 +1,4 @@
-video::create([
-    'video_id'=> 'askepwakeq',
-    'user_id'=>'1',
-    'tanggal'=>'2022-04-01',
+role::create([
+    'namaRole'=> 'mentor',
+    
 ])
