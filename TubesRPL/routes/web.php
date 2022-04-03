@@ -1,17 +1,14 @@
 <?php
 
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/login/student', [loginController::class, 'loginStudent']);
 
+Route::get('/login/mentor', [loginController::class, 'loginMentor']);
 
-Route::get('/login/student', function () {
-    return view('Login.student', [
-        'title' => 'Login | Student'
-    ]);
-});
+Route::get('/mentor/index', [UserController::class, 'indexMentor']);
+Route::get('/student/index', [UserController::class, 'index']);
 
-Route::get('/login/mentor', function () {
-    return view('Login.mentor', [
-        'title' => 'Login | Mentor'
-    ]);
-});
+Route::post('/login', [loginController::class, 'authenticate']);
