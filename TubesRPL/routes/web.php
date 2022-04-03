@@ -11,4 +11,6 @@ Route::get('/login/mentor', [loginController::class, 'loginMentor']);
 Route::get('/mentor/index', [UserController::class, 'indexMentor']);
 Route::get('/student/index', [UserController::class, 'index']);
 
+Route::get('/signup', [UserController::class, 'index']);
+
 Route::post('/login', [loginController::class, 'authenticate']);
