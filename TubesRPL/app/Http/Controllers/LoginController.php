@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\role;
 use App\Models\User;
+use Illuminate\Auth\Events\Login;
 
 class LoginController extends Controller
 {
@@ -46,6 +47,7 @@ class LoginController extends Controller
                 return redirect()->intended('/mentor/index');
             }
         }
+        return redirect('/login')->withErrors(['msg' => 'Email atau Password salah']);
     }
     public function logout()
     {

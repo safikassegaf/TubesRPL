@@ -2,6 +2,11 @@
 
 @section('login')
     <form action="/signup/form" method="POST">
+        @if ($errors->any())
+            <div class="alert alert-danger" role="alert">
+                {{ $errors->first() }}
+            </div>
+        @endif
         @csrf
         <h4>Sign Up</h4>
         <p>Choose role :</p>
@@ -30,6 +35,6 @@
             <button type="submit" class="btn ">Get Started</button>
         </div>
 
-        <p class="text-center">Already have an account?<a href="/login/student"> Sign in</a></p>
+        <p class="text-center">Already have an account?<a href="/login"> Sign in</a></p>
     </form>
-@endsection>
+@endsection

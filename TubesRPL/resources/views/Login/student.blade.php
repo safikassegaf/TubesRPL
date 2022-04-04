@@ -2,6 +2,16 @@
 
 @section('login')
     <form action="/login" method="post">
+        @if (session()->has('msg'))
+            <div class="alert alert-success">
+                {{ session()->get('msg') }}
+            </div>
+        @endif
+        @if ($errors->any())
+            <div class="alert alert-danger" role="alert">
+                {{ $errors->first() }}
+            </div>
+        @endif
         @csrf
         <h4>Student Log In</h4>
         <a href="/login/mentor" class="">Sign in as Mentor </a>

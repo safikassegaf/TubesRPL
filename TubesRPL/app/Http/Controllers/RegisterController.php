@@ -34,6 +34,8 @@ class RegisterController extends Controller
         ]);
     }
 
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -52,17 +54,29 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
+        if ($request['password'] != $request['password_confirmation']) {
+            return redirect('/signup')->withErrors(['msg' => 'Wrong password confirmation']);
+        }
+        $users = User::all();
+        foreach ($users as $user) {
+            if ($user->email == $request['email']) {
+                return redirect('/signup')->withErrors(['msg' => 'Email tersebut telah terdaftar']);
+            }
+        }
 
-        $validated = $request->validate([
-            'nama' => 'required|max:255',
-            'role_id' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed|min:4',
-        ]);
+        if ($request['email'])
+
+            $validated = $request->validate([
+                'nama' => 'required|max:255',
+                'role_id' => 'required',
+                'email' => 'required|email|unique:users',
+                'password' => 'required|confirmed',
+            ]);
+
         $validated['password'] = Hash::make($validated['password']);
 
         User::create($validated);
-        return redirect('/login');
+        return redirect('/login')->with('msg', 'Register Success');
     }
 
     /**
