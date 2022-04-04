@@ -16,16 +16,18 @@ class RegisterController extends Controller
      */
     public function index()
     {
-        return view('signup.signup',[
-            'title' => 'Sqeel.io | Signup'
+        $roles = role::all();
+        return view('signup.signup', [
+            'title' => 'Sqeel.io | Signup',
+            'roles' => $roles,
         ]);
     }
 
     public function signupview(Request $request)
     {
         $role = role::find($request['role_id']);
-       
-        return view('signup.form',[
+
+        return view('signup.form', [
             'title' => $role->namaRole . ' | Signup',
             'role_id' => $request['role_id'],
             'namaRole' => $role->namaRole
@@ -50,17 +52,17 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
+
         $validated = $request->validate([
             'nama' => 'required|max:255',
-            'body' => 'required',
             'role_id' => 'required',
             'email' => 'required|email|unique:users',
-            'password' => 'required|min:4'
+            'password' => 'required|confirmed|min:4',
         ]);
         $validated['password'] = Hash::make($validated['password']);
 
         User::create($validated);
-        return redirect('/login/student');
+        return redirect('/login');
     }
 
     /**

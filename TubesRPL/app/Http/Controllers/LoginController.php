@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\role;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -29,22 +31,25 @@ class LoginController extends Controller
             'email' => 'required|email:dns',
             'password' => 'required'
             // 'role_id' => 'required'
-
-
         ]);
-        dd(Auth::attempt($credentials));
+
 
         if (Auth::attempt($credentials)) {
 
 
-            return redirect()->intended('/Student/index');
-            // if ($request['role_id'] == '2') {
-            //     dd('berhasil login Mentor');
 
-            // } elseif ($request['role_id'] == '1') {
-            //     dd('berhasil login Mentor');
-            //     return redirect()->intended('/Mentor/index');
-            // }
+            if ($request['role_id'] == '1') {
+
+                return redirect()->intended('/student/index');
+            } elseif ($request['role_id'] == '2') {
+
+                return redirect()->intended('/mentor/index');
+            }
         }
+    }
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/login');
     }
 }

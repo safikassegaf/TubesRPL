@@ -24,9 +24,9 @@
             </label>
         </div> --}}
         <div class="d-grid gap-2 col-12 mx-auto">
-            <button type="submit" class="btn">Get Started</button>
+            <button type="submit" class="btn">Login</button>
         </div>
-        {{-- <input type="text" hidden name="role_id" id="role_id" value="2"> --}}
+        <input type="text" hidden name="role_id" id="role_id" value="1">
         <p class="text-center">Don't Have an account? <a href="/signup">Create For Free</a></p>
     </form>
 @endsection
