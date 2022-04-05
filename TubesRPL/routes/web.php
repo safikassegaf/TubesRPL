@@ -10,9 +10,17 @@ Route::get('/login', [loginController::class, 'loginStudent'])->name('login');
 
 
 Route::get('/login/mentor', [loginController::class, 'loginMentor']);
+Route::get('/', function () {
+    return view('landing', [
+        'title' => 'Sqeel.io'
+    ]);
+});
 
-
-
+Route::get('/library', function () {
+    return view('Student.library', [
+        'title' => 'Sqeel.io | Library'
+    ]);
+});
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/student/index', [UserController::class, 'index']);
